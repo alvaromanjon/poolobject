@@ -8,9 +8,11 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ubu.gii.dass.c01.*;
 
 /**
- * @author alumno
+ * @author Álvaro Manjón Vara
+ * @author María Alonso Peláez
  *
  */
 public class ReusablePoolTest {
