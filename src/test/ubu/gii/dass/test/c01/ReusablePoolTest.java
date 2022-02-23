@@ -54,5 +54,4 @@ public class ReusablePoolTest {
 	public void testReleaseReusable() {
 		
 	}
-
 }
