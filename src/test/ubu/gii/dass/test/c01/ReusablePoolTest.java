@@ -5,6 +5,8 @@ package ubu.gii.dass.test.c01;
 
 import static org.junit.Assert.*;
 
+import java.util.Vector;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +21,6 @@ import ubu.gii.dass.c01.*;
 public class ReusablePoolTest {
 
 	private ReusablePool p;
-	private Reusable r1, r2, r3;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -35,9 +36,6 @@ public class ReusablePoolTest {
 	@After
 	public void tearDown() throws Exception {
 		try {
-			r1 = null;
-			r2 = null;
-			r3 = null;
 			while(true) {
 				p.acquireReusable();
 			}
@@ -59,10 +57,22 @@ public class ReusablePoolTest {
 
 	/**
 	 * Test method for {@link ubu.gii.dass.c01.ReusablePool#acquireReusable()}.
-	 */
+	 */	
 	@Test
 	public void testAcquireReusable() {
+		Reusable r = null;
+		Vector<Reusable> obtenidos = new Vector<>();
 		
+		try {
+			while (true) {
+				r = p.acquireReusable();
+				assertNotNull(r);
+				obtenidos.add(r);
+			}
+			
+		} catch (NotFreeInstanceException e) {
+			assertTrue(obtenidos.size() <= 2);
+		}
 	}
 
 	/**
