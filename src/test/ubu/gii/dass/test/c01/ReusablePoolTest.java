@@ -80,6 +80,18 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testReleaseReusable() {
+		Reusable r = new Reusable();
 		
+		try {
+			p.releaseReusable(r);
+		} catch (DuplicatedInstanceException e) {
+			fail();
+		}
+		
+		try {
+			p.releaseReusable(r);
+		} catch (DuplicatedInstanceException e) {
+
+		}
 	}
 }
