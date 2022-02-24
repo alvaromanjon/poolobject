@@ -4,4 +4,4 @@ coverage:
   precision: 3
   
 ignore:
-    - "src/test/*"
+  - "src/test/*"
