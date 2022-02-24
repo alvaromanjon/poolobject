@@ -6,6 +6,7 @@ package ubu.gii.dass.test.c01;
 import static org.junit.Assert.*;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ubu.gii.dass.c01.*;
@@ -17,11 +18,15 @@ import ubu.gii.dass.c01.*;
  */
 public class ReusablePoolTest {
 
+	private ReusablePool p;
+	private Reusable r1, r2, r3;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		p = ReusablePool.getInstance();
 	}
 
 	/**
@@ -29,6 +34,16 @@ public class ReusablePoolTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+		try {
+			r1 = null;
+			r2 = null;
+			r3 = null;
+			while(true) {
+				p.acquireReusable();
+			}
+		} catch (Exception ex) {
+			
+		}
 	}
 
 	/**
@@ -36,7 +51,10 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testGetInstance() {
-		
+		assertNotNull(p);
+		ReusablePool p2 = ReusablePool.getInstance();
+		assertNotNull(p2);
+		assertEquals(p, p2);
 	}
 
 	/**
